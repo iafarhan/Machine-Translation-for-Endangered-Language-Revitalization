@@ -187,6 +187,7 @@ class Vocab(object):
         @param file_path (str): file path to vocab file
         """
         with open(file_path, 'w') as f:
+            # dict below creates a new dict with src_word2id containing src word2id and so on.
             json.dump(dict(src_word2id=self.src.word2id, tgt_word2id=self.tgt.word2id), f, indent=2)
 
     @staticmethod
@@ -198,7 +199,7 @@ class Vocab(object):
         entry = json.load(open(file_path, 'r'))
         src_word2id = entry['src_word2id']
         tgt_word2id = entry['tgt_word2id']
-
+        # loads and creates a new vocabulary
         return Vocab(VocabEntry(src_word2id), VocabEntry(tgt_word2id))
 
     def __repr__(self):
@@ -216,7 +217,9 @@ def get_vocab_list(file_path, source, vocab_size):
     """ 
     spm.SentencePieceTrainer.train(input=file_path, model_prefix=source, vocab_size=vocab_size)     # train the spm model
     sp = spm.SentencePieceProcessor()                                                               # create an instance; this saves .model and .vocab files 
-    sp.load('{}.model'.format(source))                                                              # loads tgt.model or src.model
+    sp.load('{}.model'.format(source))    
+    #sp.get_piece_size() => vocab_size
+    #as library is named sentence piece, piece is a subword.
     sp_list = [sp.id_to_piece(piece_id) for piece_id in range(sp.get_piece_size())]                 # this is the list of subwords
     return sp_list 
 
@@ -226,11 +229,11 @@ if __name__ == '__main__':
     args = docopt(__doc__)
     print('read in source sentences: %s' % args['--train-src'])
     print('read in target sentences: %s' % args['--train-tgt'])
-
-    src_sents = get_vocab_list(args['--train-src'], source='src', vocab_size=21000)         
+    # so first we get unique words from vocabulary using google's sentencepiece
+    src_sents = get_vocab_list(args['--train-src'], source='src', vocab_size=200)        
     tgt_sents = get_vocab_list(args['--train-tgt'], source='tgt', vocab_size=8000)
     vocab = Vocab.build(src_sents, tgt_sents)
     print('generated vocabulary, source %d words, target %d words' % (len(src_sents), len(tgt_sents)))
-
+    # so save word2inds of source-target vocab
     vocab.save(args['VOCAB_FILE'])
     print('vocabulary saved to %s' % args['VOCAB_FILE'])

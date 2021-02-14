@@ -20,7 +20,7 @@ from torch.nn.utils.rnn import pad_packed_sequence, pack_padded_sequence
 from model_embeddings import ModelEmbeddings
 Hypothesis = namedtuple('Hypothesis', ['value', 'score'])
 
-
+# inherited from nn.Module (module api - Pytorch)
 class NMT(nn.Module):
     """ Simple Neural Machine Translation Model:
         - Bidrectional LSTM Encoder
@@ -77,9 +77,22 @@ class NMT(nn.Module):
         ###     Dropout Layer:
         ###         https://pytorch.org/docs/stable/nn.html#torch.nn.Dropout
 
+        self.encoder =nn.LSTM(
+            input_size=embed_size,
+            hidden_size=self.hidden_size,
+            bidirectional=True
+        )
 
-
-
+        self.decoder = nn.LSTMCell(input_size=embed_size,hidden_size=self.hidden_size)
+        # wh = h_projection to map from encoder's last to decoder's first hidden state
+        self.h_projection = nn.Linear(in_features= 2*self.hidden_size, out_features=self.hidden_size,bias=False)
+        self.c_projection = nn.Linear(in_features= 2*self.hidden_size, out_features=self.hidden_size,bias=False)
+        self.att_projection = nn.Linear(in_features= 2*self.hidden_size, out_features=self.hidden_size,bias=False)
+        self.combined_output_projection = nn.Linear(in_features= 3*self.hidden_size, out_features=self.hidden_size,bias=False)
+        # 
+        src_vocab_size = len(self.vocab.src)
+        self.target_vocab_projection = nn.Linear(in_features=src_vocab_size,out_features=self.hidden_size ,bias=False)
+        self.dropout = nn.Dropout(p=dropout_rate)
         ### END YOUR CODE
 
 
@@ -172,6 +185,11 @@ class NMT(nn.Module):
 
 
 
+        X = self.model_embeddings.source(source_padded)
+        X_pack = nn.utils.rnn.pack_padded_sequence(X,source_lengths)
+        out_feats, enc_hiddens = self.encoder(X_pack) 
+        print(out_feats)
+        print("_______________")
 
         ### END YOUR CODE
 

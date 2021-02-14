@@ -11,7 +11,7 @@ Vera Lin <veralin@stanford.edu>
 """
 
 import torch.nn as nn
-
+from vocab import *
 class ModelEmbeddings(nn.Module): 
     """
     Class that converts input words to their embeddings.
@@ -51,9 +51,15 @@ class ModelEmbeddings(nn.Module):
         ### Use the following docs to properly initialize these variables:
         ###     Embedding Layer:
         ###         https://pytorch.org/docs/stable/nn.html#torch.nn.Embedding
-        
+        num_emb_src = len(vocab.src) # chr
+        num_emb_tgt = len(vocab.tgt) #eng
 
-
+        self.source = nn.Embedding(num_embeddings=num_emb_src, embedding_dim=self.embed_size, padding_idx= src_pad_token_idx)
+        self.target = nn.Embedding(num_embeddings=num_emb_tgt, embedding_dim=self.embed_size, padding_idx=tgt_pad_token_idx)
         ### END YOUR CODE
 
 
+# if __name__=="__main__":
+#     vocab = Vocab.load('./vocab.json')
+#     emb = ModelEmbeddings(10,vocab)
+#     print(emb.source)

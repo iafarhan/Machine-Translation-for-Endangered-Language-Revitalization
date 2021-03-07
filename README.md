@@ -6,6 +6,7 @@ Cherokee and English.
 
 Example sequence from the dataset is as follow.
 **Chr** : ᎥᏝ ᎡᎶᎯ ᎠᏁᎯ ᏱᎩ, ᎾᏍᎩᏯ ᎠᏴ ᎡᎶᎯ ᎨᎢ ᏂᎨᏒᎾ ᏥᎩ.
+
 **English** : They are not of the world, even as I am not of the world.
 
 Compared to some popular machine translation language pairs, ChrEn is extremely low-resource, only containing 14k sentence pairs in total. 

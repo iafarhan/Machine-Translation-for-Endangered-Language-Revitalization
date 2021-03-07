@@ -1,4 +1,4 @@
-*Inspired from* **ChrEn: Cherokee-English Machine Translation for Endangered Language Revitalization** </br>
+*Inspired from* **ChrEn: Cherokee-English Machine Translation for Endangered Language Revitalization** </br> </br>
 Cherokee is a highly endangered Native American language spoken by the Cherokee people. The Cherokee culture is deeply embedded in its language. However, there are approximately only 2,000 fluent first language Cherokee speakers remaining in the world.
 
 **Dataset** : ChrEn, a Cherokee-English parallel dataset, to facilitate machine translation research between

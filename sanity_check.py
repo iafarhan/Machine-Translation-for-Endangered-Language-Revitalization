@@ -1,21 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
-"""
-CS224N 2019-20: Homework 4
-sanity_check.py: sanity checks for assignment 4
-Sahil Chopra <schopra8@stanford.edu>
-Michael Hahn <>
-Vera Lin <veralin@stanford.edu>
-
-If you are a student, please don't run overwrite_output_for_sanity_check as it will overwrite the correct output!
-
-Usage:
-    sanity_check.py 1d
-    sanity_check.py 1e
-    sanity_check.py 1f
-    sanity_check.py overwrite_output_for_sanity_check
-"""
 import sys
 
 import numpy as np

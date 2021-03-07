@@ -1,13 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-"""
-CS224N 2020-21: Homework 4
-nmt.py: NMT Model
-Pencheng Yin <pcyin@cs.cmu.edu>
-Sahil Chopra <schopra8@stanford.edu>
-Vera Lin <veralin@stanford.edu>
-"""
 
 import math
 from typing import List
@@ -33,8 +23,6 @@ def pad_sents(sents, pad_token):
     """
     sents_padded = []
 
-    ### YOUR CODE HERE (~6 Lines)
-
     sents_len = [len(x) for x in sents]
     max_len_sent = max(sents_len)
     sents_padded = []
@@ -42,7 +30,6 @@ def pad_sents(sents, pad_token):
         padded = sent + [pad_token]*(max_len_sent-sents_len[i])
         sents_padded.append(padded)
 
-    ### END YOUR CODE
 
     return sents_padded
 

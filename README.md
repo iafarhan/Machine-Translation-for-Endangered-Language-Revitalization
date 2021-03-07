@@ -4,7 +4,7 @@ Cherokee is a highly endangered Native American language spoken by the Cherokee 
 **Dataset** : ChrEn, a Cherokee-English parallel dataset, to facilitate machine translation research between
 Cherokee and English.
 
-Example sequence from the dataset is as follow.
+Example sequence from the dataset is as follow. </br>
 **Chr** : ᎥᏝ ᎡᎶᎯ ᎠᏁᎯ ᏱᎩ, ᎾᏍᎩᏯ ᎠᏴ ᎡᎶᎯ ᎨᎢ ᏂᎨᏒᎾ ᏥᎩ. </br>
 **English** : They are not of the world, even as I am not of the world. </br>
 

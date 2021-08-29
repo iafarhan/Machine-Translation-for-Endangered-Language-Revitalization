@@ -17,3 +17,4 @@ we have used google's Sentencepiece to deal with tokenization and vocabulary mak
  We then use the encoder hidden states to compute Multiplication attention at each step to let the model decide where to put its attention on the input sequence.
 We now concatenate the attention output with the decoder hidden state and pass this through a linear layer, tanh, and dropout to attain the combined-output vector.
 we Produce a probability distribution over the target subwords at each time step. We then compute softmax with entropy loss between Probability distribution and OHE of Target subword. </br>
+   
